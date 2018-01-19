@@ -1,5 +1,8 @@
 package Attribution;
-
+/**
+ * Permet de representer un couple Groupe/Choix d'école
+ * @author baptiste
+ */
 public class GroupeFinal {
 	private String nom;
 	private int choix;

@@ -43,13 +43,8 @@ public class AttributionHelper {
 		for (Map.Entry<Integer, ArrayList<String>> map : choix.entrySet()) {
 			int rand = (int)(Math.random() * map.getValue().size());
 			attributions.add(new GroupeFinal(map.getValue().get(rand), map.getKey()));
-			System.out.print(map.getKey() + " -> ");
-			for(String c: map.getValue()) {
-				System.out.print(c + " ");
-			}
 			listeGroupes.remove(map.getValue().get(rand));
 			choixDejaAttrib.add(map.getKey());
-			System.out.println("");
 		}
 	}
 
