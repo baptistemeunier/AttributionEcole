@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class CSVReaderHelper {
 
@@ -35,8 +34,6 @@ public class CSVReaderHelper {
 	private static String getAbsolutePath(String filename) {
 		File f = new File("");
 		return f.getAbsolutePath() + File.separator + filename;
-		
-		//return "";
 	}
 
 }
