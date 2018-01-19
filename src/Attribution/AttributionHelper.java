@@ -6,46 +6,38 @@ import java.util.Map;
 
 public class AttributionHelper {
 
-	private static HashMap<String, ArrayList<Integer>> listeGroupes;
-	private static ArrayList<GroupeFinal> attributions;
-	private static ArrayList<Integer> choixDejaAttrib;
+	private ArrayList<GroupeFinal> groupes;
+//	private static ArrayList<Integer> choixDejaAttrib;
 
-	public static ArrayList<GroupeFinal> run(HashMap<String, ArrayList<Integer>> groupes) {
-		AttributionHelper.listeGroupes = groupes;
-		attributions = new ArrayList<GroupeFinal>();
-		choixDejaAttrib = new ArrayList<Integer>();
-		int nb = 0;
-		while(listeGroupes.size() != 0) {
-			tour(nb);
-			nb++;
-		}
-		return attributions;
+	public AttributionHelper(ArrayList<GroupeFinal> groupes) {
+		this.groupes = groupes;
 	}
 
-	private static void tour(int nb) {
-		// Recuperation des choix en tête de liste
-		HashMap<Integer, ArrayList<String>> choix = new HashMap<Integer, ArrayList<String>>();
-		for (Map.Entry<String, ArrayList<Integer>> map : listeGroupes.entrySet()) {
-			if(map.getValue().size() != 0) {
-				int c = map.getValue().get(nb);
-				if(!choixDejaAttrib.contains(c)) {
-					if(choix.containsKey(c)) {
-						choix.get(c).add(map.getKey());
-					}else {
-						ArrayList<String> tmp = new ArrayList<String>();
-						tmp.add(map.getKey());
-						choix.put(c, tmp);
-					}					
-				}
+	public void run() {
+		/** Remplisage du tableau de choix ponderée **/
+		int[][] choixPondereeEcole = new int[groupes.get(0).getListechoix().size()][groupes.size()];
+		//[6, 5, 8, 9]
+		for(int id = 0; id < groupes.size(); id++) {
+			int poids = 1;
+			for(int c: groupes.get(id).getListechoix()) {
+				choixPondereeEcole[c-1][id] = poids;
+				poids++;
 			}
 		}
 		
-		for (Map.Entry<Integer, ArrayList<String>> map : choix.entrySet()) {
-			int rand = (int)(Math.random() * map.getValue().size());
-			attributions.add(new GroupeFinal(map.getValue().get(rand), map.getKey()));
-			listeGroupes.remove(map.getValue().get(rand));
-			choixDejaAttrib.add(map.getKey());
+		for(int i = 0; i < choixPondereeEcole.length; i++) {
+			int minValue = Integer.MAX_VALUE;
+			ArrayList<Integer> g = new ArrayList<Integer>();
+			for(int j = 0; j < choixPondereeEcole[i].length; j++) {
+				if(choixPondereeEcole[i][j] < minValue && groupes.get(j).naPasDeChoix()) {
+					minValue = choixPondereeEcole[i][j];
+					g.clear();	g.add(j);
+				}else if(choixPondereeEcole[i][j] == minValue && groupes.get(j).naPasDeChoix()) {
+					g.add(j);					
+				}
+			}
+			int rand = (int)(Math.random() * g.size());
+			groupes.get(g.get(rand)).setChoix(i+1);
 		}
 	}
-
 }

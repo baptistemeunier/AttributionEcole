@@ -10,15 +10,16 @@ public class Program {
 	
 	public static void main(String[] args) {
 		try {
-			HashMap<String, ArrayList<Integer>> groupes = new HashMap<String, ArrayList<Integer>>();
+			ArrayList<GroupeFinal> groupes = new ArrayList<GroupeFinal>();
 			/** Lecture du fichier csv **/
 			boolean data = CSVReaderHelper.parse("test.csv", groupes);
 
 			/** Execution de l'algo **/
-			ArrayList<GroupeFinal> attributions = AttributionHelper.run(groupes);
+			AttributionHelper ah = new AttributionHelper(groupes);
+			ah.run();
 
 			/** Ecriture du fichier csv **/
-			CSVWriterHelper.write("result.csv", attributions);
+			CSVWriterHelper.write("result.csv", groupes);
 
 		} catch (Exception e) {
 			System.out.println("Imposible de faire marcher le programme");

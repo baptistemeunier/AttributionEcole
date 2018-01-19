@@ -1,12 +1,21 @@
 package Attribution;
+
+import java.util.ArrayList;
+
 /**
  * Permet de representer un couple Groupe/Choix d'école
  * @author baptiste
  */
 public class GroupeFinal {
 	private String nom;
-	private int choix;
+	private int choix = -1;
+	private ArrayList<Integer> listechoix;
 	
+	public GroupeFinal(String nom, ArrayList<Integer> liste) {
+		this.nom = nom;
+		this.listechoix = liste;
+	}
+
 	public GroupeFinal(String nom, Integer choix) {
 		this.nom = nom;
 		this.choix = choix;
@@ -18,6 +27,7 @@ public class GroupeFinal {
 	public String getNom() {
 		return nom;
 	}
+	
 	/**
 	 * @param nom the nom to set
 	 */
@@ -38,6 +48,13 @@ public class GroupeFinal {
 		this.choix = choix;
 	}
 	
+	public ArrayList<Integer> getListechoix() {
+		return listechoix;
+	}
+
+	public boolean naPasDeChoix() {
+		return this.choix == -1;
+	}
 	public String toString() {
 		return this.nom + " -> " + this.choix;
 	}
