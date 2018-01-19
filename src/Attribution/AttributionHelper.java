@@ -24,7 +24,7 @@ public class AttributionHelper {
 
 	private static void tour(int nb) {
 		// Recuperation des choix en tête de liste
-		HashMap<Integer, ArrayList<String>> choix = new HashMap<Integer, ArrayList<String>>();		
+		HashMap<Integer, ArrayList<String>> choix = new HashMap<Integer, ArrayList<String>>();
 		for (Map.Entry<String, ArrayList<Integer>> map : listeGroupes.entrySet()) {
 			if(map.getValue().size() != 0) {
 				int c = map.getValue().get(nb);

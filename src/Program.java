@@ -5,6 +5,7 @@ import java.util.Map;
 import Attribution.AttributionHelper;
 import Attribution.GroupeFinal;
 import CSVHelper.CSVReaderHelper;
+import CSVHelper.CSVWriterHelper;
 
 public class Program {
 
@@ -16,6 +17,7 @@ public class Program {
 			for(GroupeFinal gf: attributions) {
 				System.out.println(gf);
 			}
+			CSVWriterHelper.write("result.csv", attributions);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
