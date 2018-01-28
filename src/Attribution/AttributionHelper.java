@@ -44,11 +44,9 @@ public class AttributionHelper {
 		}
 		
 		for(i = 0; i < indexChoixEcole.size(); i++) {
-			System.out.println("Ecole : " + indexChoixEcole.get(i));	
 			int minValue = Integer.MAX_VALUE;
 			ArrayList<Integer> g = new ArrayList<Integer>();
 			for(GroupeChoix gc : choixEcole.get(i)) {
-				System.out.println("Groupes : " + gc.getGroupe() + "poids : " + gc.getPoids());
 				if(gc.getPoids() < minValue && groupes.get(gc.getGroupe()).naPasDeChoix()) {
 					minValue = gc.getPoids();
 					g.clear();	g.add(gc.getGroupe());

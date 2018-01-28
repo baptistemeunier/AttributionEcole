@@ -12,7 +12,7 @@ public class CSVReaderHelper {
 
 	public static boolean parse(String filename, ArrayList<GroupeFinal> groupes) throws IOException {
 		String path = CSVReaderHelper.getAbsolutePath(filename);
-		System.out.println("Le chemin est : " + path);
+		System.out.println("Le chemin source est : " + path);
 		File f = new File(path);
 		readFile(f, groupes);
 		return false;

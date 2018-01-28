@@ -20,6 +20,7 @@ public class CSVWriterHelper {
 	public static void write(String name, ArrayList<GroupeFinal> attributions) throws IOException {
 		
 		FileWriter fileWriter = new FileWriter(getAbsolutePath(name));
+		System.out.println("Le chemin final est  : " + getAbsolutePath(name));
 		/** Ajout de chaque groupe un à un **/
 		for(GroupeFinal gf: attributions) {
 			fileWriter.append(gf.getNom() + "," + gf.getChoix() + "\n");			
