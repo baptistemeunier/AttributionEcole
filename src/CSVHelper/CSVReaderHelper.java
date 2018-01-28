@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import Attribution.GroupeFinal;
 
@@ -27,10 +26,17 @@ public class CSVReaderHelper {
 			ArrayList<Integer> tmp = new ArrayList<Integer>();
 			String[] col = line.split(",");
 			for(int i = 1; i < col.length; i++) {
-				tmp.add(Integer.parseInt(col[i]));
+				int n;
+				try {
+					n = Integer.parseInt(col[i]);
+				}catch(Exception e) {
+					n = 0;
+				}
+				tmp.add(n);
 			}
 			groupes.add(new GroupeFinal(col[0], tmp));		
 		}
+		buffer.close();
 	}
 
 	private static String getAbsolutePath(String filename) {

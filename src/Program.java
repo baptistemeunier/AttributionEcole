@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import Attribution.AttributionHelper;
 import Attribution.GroupeFinal;
@@ -12,7 +11,7 @@ public class Program {
 		try {
 			ArrayList<GroupeFinal> groupes = new ArrayList<GroupeFinal>();
 			/** Lecture du fichier csv **/
-			boolean data = CSVReaderHelper.parse("test.csv", groupes);
+			CSVReaderHelper.parse("test.csv", groupes);
 
 			/** Execution de l'algo **/
 			AttributionHelper ah = new AttributionHelper(groupes);
